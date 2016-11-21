@@ -11,7 +11,6 @@ import 'tachyons'
 
 const networkInterface = createNetworkInterface({ uri: 'https://api.graph.cool/simple/v1/__PROJECT_ID_' })
 
-// use the auth0IdToken in localStorage for authorized requests
 networkInterface.use([{
   applyMiddleware (req, next) {
     if (!req.options.headers) {
