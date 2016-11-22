@@ -1,4 +1,4 @@
-# react-apollo-auth0-example
+# react-apollo-email-example
 ![](http://i.imgur.com/CH44AZF.png)
 
 
