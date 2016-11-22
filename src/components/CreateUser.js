@@ -93,7 +93,7 @@ class CreateUser extends React.Component {
 }
 
 const createUser = gql`
-  mutation ($email: String!, $password: Password!, $name: String!, $emailSubscription: Boolean!) {
+  mutation ($email: String!, $password: String!, $name: String!, $emailSubscription: Boolean!) {
     createUser(authProvider: {email: {email: $email, password: $password}}, name: $name, emailSubscription: $emailSubscription) {
       id
     }
@@ -101,7 +101,7 @@ const createUser = gql`
 `
 
 const signinUser = gql`
-  mutation ($email: String!, $password: String!) { 
+  mutation ($email: String!, $password: String!) {
     signinUser(email: {email: $email, password: $password}) {
       token
     }
