@@ -1,6 +1,7 @@
 # react-apollo-email-example
 ![](http://i.imgur.com/CH44AZF.png)
 
+Try the [hosted version](http://apollo-auth0.netlify.com).
 
 ## Getting Started
 
