@@ -5,7 +5,7 @@ Try the [hosted version](http://apollo-email.netlify.com).
 
 ## Getting Started
 
-After [downloading this example](https://github.com/graphcool-examples/react-apollo-email-example/archive/master.zip) please follow the steps detailed in [the online guide](https://graph.cool/docs/guides/react-apollo-email).
+After [downloading this example](https://github.com/graphcool-examples/react-apollo-email-example/archive/master.zip) please follow the steps detailed in [the online guide](https://www.graph.cool/docs/tutorials/react-apollo-email-oopheesaj9).
 
 A short summary is given below.
 
