@@ -1,4 +1,6 @@
 # react-apollo-email-example
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/graphcool-examples/react-apollo-email-example.svg)](https://greenkeeper.io/)
 ![](http://i.imgur.com/CH44AZF.png)
 
 Try the [hosted version](http://apollo-email.netlify.com).
