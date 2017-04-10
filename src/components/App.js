@@ -1,43 +1,42 @@
-import React from 'react'
-import { graphql } from 'react-apollo'
-import { withRouter } from 'react-router'
-import gql from 'graphql-tag'
-import ListPage from './ListPage'
-import NewPostLink from './NewPostLink'
+import React from 'react';
+import {graphql} from 'react-apollo';
+import gql from 'graphql-tag';
+import ListPage from './ListPage';
+import NewPostLink from './NewPostLink';
 
 class App extends React.Component {
   static propTypes = {
-    router: React.PropTypes.object.isRequired,
+    history: React.PropTypes.object.isRequired,
     data: React.PropTypes.object.isRequired,
-  }
+  };
 
   _logout = () => {
     // remove token from local storage and reload page to reset apollo client
-    window.localStorage.removeItem('graphcoolToken')
-    location.reload()
-  }
+    window.localStorage.removeItem('graphcoolToken');
+    location.reload();
+  };
 
   _showLogin = () => {
-    this.props.router.push('/login')
-  }
+    this.props.history.push('/login');
+  };
 
   _showSignup = () => {
-    this.props.router.push('/signup')
-  }
+    this.props.history.push('/signup');
+  };
 
   _isLoggedIn = () => {
-    return this.props.data.user
-  }
+    return this.props.data.user;
+  };
 
-  render () {
+  render() {
     if (this.props.data.loading) {
-      return (<div>Loading</div>)
+      return <div>Loading</div>;
     }
 
     if (this._isLoggedIn()) {
-      return this.renderLoggedIn()
+      return this.renderLoggedIn();
     } else {
-      return this.renderLoggedOut()
+      return this.renderLoggedOut();
     }
   }
 
@@ -47,9 +46,9 @@ class App extends React.Component {
         <span>
           Logged in as {this.props.data.user.name}
         </span>
-        <div className='pv3'>
+        <div className="pv3">
           <span
-            className='dib bg-red white pa3 pointer dim'
+            className="dib bg-red white pa3 pointer dim"
             onClick={this._logout}
           >
             Logout
@@ -58,17 +57,17 @@ class App extends React.Component {
         <ListPage />
         <NewPostLink />
       </div>
-    )
+    );
   }
 
   renderLoggedOut() {
     return (
       <div>
-        <div className='pv3'>
+        <div className="pv3">
           <div>
             <span
               onClick={this._showLogin}
-              className='dib pa3 white bg-blue dim pointer'
+              className="dib pa3 white bg-blue dim pointer"
             >
               Log in with Email
             </span>
@@ -77,7 +76,7 @@ class App extends React.Component {
           <div>
             <span
               onClick={this._showSignup}
-              className='dib pa3 white bg-blue dim pointer'
+              className="dib pa3 white bg-blue dim pointer"
             >
               Sign up with Email
             </span>
@@ -85,17 +84,17 @@ class App extends React.Component {
         </div>
         <ListPage />
       </div>
-    )
+    );
   }
 }
 
-const userQuery = gql`
-  query {
-    user {
-      id
-      name
-    }
+const userQuery = gql`query userQuery {
+  user {
+    id
+    name
   }
-`
+}`;
 
-export default graphql(userQuery, { options: {forceFetch: true }})(withRouter(App))
+export default graphql(userQuery, {options: {fetchPolicy: 'network-only'}})(
+  App,
+);
