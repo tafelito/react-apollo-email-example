@@ -29,10 +29,7 @@ networkInterface.use([
   },
 ])
 
-const client = new ApolloClient({
-  networkInterface,
-  dataIdFromObject: o => o.id,
-})
+const client = new ApolloClient({networkInterface})
 
 ReactDOM.render(
   <ApolloProvider client={client}>

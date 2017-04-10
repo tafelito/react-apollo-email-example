@@ -67,6 +67,8 @@ const createPost = gql`
   mutation createPost ($description: String!, $imageUrl: String!) {
     createPost(description: $description, imageUrl: $imageUrl) {
       id
+      description
+      imageUrl
     }
   }
 `
@@ -79,6 +81,26 @@ const userQuery = gql`
   }
 `
 
-export default graphql(createPost)(
-  graphql(userQuery, {options: {fetchPolicy: 'network-only'}})(CreatePost),
-)
+const FeedQuery = gql`query FeedQuery{
+  allPosts(orderBy: createdAt_DESC) {
+    id
+    imageUrl
+    description
+  }
+}`
+
+export default graphql(createPost, {
+  options: {
+    update: (proxy, {data: {createPost}}) => {
+      const data = proxy.readQuery({query: FeedQuery})
+      data.allPosts.unshift(createPost)
+      proxy.writeQuery({query: FeedQuery, data})
+    },
+  },
+})(graphql(userQuery, {options: {fetchPolicy: 'network-only'}})(CreatePost))
+
+// export default graphql(createPost, {name: 'createPost'})(
+//   graphql(userQuery, {options: {fetchPolicy: 'network-only'}})(
+//     graphql(FeedQuery, {name: 'listPosts'})(CreatePost),
+//   ),
+// )
